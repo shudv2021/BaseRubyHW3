@@ -11,23 +11,17 @@ tr1 = Train.new
 tr2 = Train.new('343', 'pasanger', 5)
 puts tr1.train_num
 puts tr2.type
-
 route1=Route.new(st1, st5)
 route1.add_staition(st4)
 route1.add_staition(st3)
 route1.add_staition(st2)
-
-
 route1.all_stations.each { |station| puts station.station_name }
 puts "**********-----**********"
 route1.all_stations.each { |station| puts station.station_name }
 tr1.sent_train(route1)
-puts "++++++++++++++"
-tr1.move('forvard')
-tr1.move('forvard')
+puts "++++++++++++++//"
 puts tr1.current_station.station_name
-puts "------------------"
-tr1.where_amI
+puts "весь маршрут полностью:"
 route1.all_stations.each {|station| puts station.station_name}
 puts "//////////////////////////////"
 tr3 = Train.new('898', 'pasanger', 5)
@@ -36,9 +30,16 @@ tr5 = Train.new('777', 'cargo', 20)
 tr3.sent_train(route1)
 tr4.sent_train(route1)
 tr5.sent_train(route1)
-
-st1.show_by_type('pasanger')
 puts "***************"
-st1.show_all_trains
+puts "--#{tr1.where[:prev_station].station_name}--" if tr1.where[:prev_station]!=nil
+puts "--#{tr1.where[:current_station].station_name}--" if tr1.where[:current_station]!=nil
+puts "--#{ tr1.where[:next_station].station_name}--" if tr1.where[:next_station]!=nil
+puts tr1.where[:current_station]==nil
+puts tr1.current_station
+puts tr1.where
+puts "++++++++++++++++++++++++++++"
+st1.show_by_type('cargo').each { |tr| puts tr.total_vagons}
 
+st1.add_train(tr20)
+puts st1.all_trains
 

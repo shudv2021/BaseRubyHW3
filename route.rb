@@ -3,16 +3,22 @@ class Route
   def initialize(start_staition, finish_station)
     @all_stations =[start_staition, finish_station]
   end
+
   def add_staition (new_station)
     #не используем метод all_stations= потому что он будет менять
     # последнюю стнацию маршрута
-    @all_stations.insert(1, new_station)
-    @all_stations.uniq!
-  end
-  def delete_station(station_del)
-    all_stations.each do |station|
-      @all_stations.delete(station) if station == station_del
+    #break if @all_stations.include?(new_station) Invalid break (SyntaxError)
+    # Как тогда выполнить прерывание метода по условию?
+    if @all_stations.include?(new_station)
+      puts "Такая станция уже есть на маршруте."
+      #Я ведь могу добавлять вывод в методах если они должны что то сообщить
+      else
+      @all_stations.insert(1, new_station)
     end
+  end
+
+  def delete_station(station_del)
+      @all_stations.delete(station) if station == station_del
   end
 end
 #    Имеет начальную и конечную станцию, а также список промежуточных станций.

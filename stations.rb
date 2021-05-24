@@ -5,17 +5,22 @@ class Station
     @station_name = station_name
     @all_trains = []
   end
-  def add_train(train)
 
+  def add_train(train)
+    train == Train.new
+    all_trains<<train
   end
+
   def show_all_trains
     all_trains.each { |train| puts train}
   end
+
   def show_by_type(type)
-    all_trains.each { |train| puts train if train.type == type}
+    @all_trains.filter { |tr| tr.type == type}
   end
+
   def send_train(train)
-    
+
   end
 end
 #Имеет название, которое указывается при ее создании
