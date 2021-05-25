@@ -1,3 +1,6 @@
+#????Про отступы не понял. Когда у нас вложенность (что то внутри чего то) в блоке делается доп пробел???
+# ???Правильньо???
+# ???Я так вопросы буду присать, ок???
 class Route
   attr_accessor :all_stations
   def initialize(start_staition, finish_station)
@@ -12,15 +15,19 @@ class Route
     if @all_stations.include?(new_station)
       puts "Такая станция уже есть на маршруте."
       #Я ведь могу добавлять вывод в методах если они должны что то сообщить
-      else
-      @all_stations.insert(1, new_station)
+      # Я поменяю когда будет задание пока так хоть понятно при отладке что пошло не так
+    else @all_stations.insert(1, new_station)
     end
   end
 
   def delete_station(station_del)
-      @all_stations.delete(station) if station == station_del
+    @all_stations.delete(station) if station == station_del
   end
 end
+#????Про отступв не понял. Когда у нас вложенность (что то внутри чего то) в блоек делается доп пробел???
+# ???Правильнь???
+# ???Я так вопросы буду присать, ок???
+#
 #    Имеет начальную и конечную станцию, а также список промежуточных станций.
 # Начальная и конечная станции указываютсся при создании маршрута,
 # а промежуточные могут добавляться между ними.

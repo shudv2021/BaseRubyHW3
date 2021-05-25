@@ -1,12 +1,11 @@
 class Train
-  attr_reader :train_num, :type, :route, :current_station, :speed, :where
+  attr_reader :train_num, :type, :route, :current_station, :speed
   attr_accessor :total_vagons
-  def initialize(train_num ='0000', type = 'cargo', total_vagons = 1)
+  def initialize(train_num =rand(000..999), type = 'cargo', total_vagons = 1)
     @train_num = train_num
     @type = type
     @total_vagons = total_vagons
     @route
-    @where = {}
     @speed = 0
   end
 
@@ -32,38 +31,34 @@ class Train
     @current_station.all_trains.push(self)
   end
 
-  def where_am_i
-      num_current_station = @route.all_stations.index(@current_station)
-      puts "#{num_current_station}"
-      @where[:prev_station] = @route.all_stations[num_current_station - 1]
-      @where[:current_station] = @current_station
-      @where[:next_station] = @route.all_stations[num_current_station + 1]
-      return @where
-    end
-
-  def move_back
-    if @current_station == @route.all_stations[0]
-      puts " Поезд находится на первой станции маршрута и не может двигаться назад. "
+  def prev_station
+    if @route.all_stations.index(@current_station) == 0
+      return nil
     else
-      current_station
-      @current_station.all_trains.delete(self)
-      @current_station = @where[:prev_station]
-      @current_station.all_trains.push(self)
-      self.where_am_i
+      @route.all_stations[@route.all_stations.index(@current_station) - 1]
     end
-
   end
 
-  def move_forvard
-    if @current_station == @route.all_stations[-1]
-    puts " Поезд находится на последней станции маршрута и не может двигаться вперед. "
+  def next_station
+    if @route.all_stations.index(@current_station)  == @route.all_stations.size
+      return nil
     else
-      @current_station.all_trains.delete(self)
-      @current_station = @where[:next_station]
-      @current_station.all_trains.push(self)
-      self.where_am_i
+      #puts @route.all_stations.index(@current_station)
+      #puts @route.all_stations.size
+      return @route.all_stations[@route.all_stations.index(@current_station) + 1]
     end
   end
+
+  def move(station)
+    if station.nil?
+      puts ' Движение на заданную станцию невозможно '
+      return nil
+    end
+    @current_station.all_trains.delete(self)
+    @current_station = station
+    @current_station.all_trains.push(self)
+  end
+
 
   #+Имеет номер (произвольная строка) и тип (грузовой, пассажирский)
   # +и количество вагонов, эти данные указываются при создании экземпляра класса

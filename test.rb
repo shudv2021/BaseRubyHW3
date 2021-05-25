@@ -30,16 +30,33 @@ tr5 = Train.new('777', 'cargo', 20)
 tr3.sent_train(route1)
 tr4.sent_train(route1)
 tr5.sent_train(route1)
-puts "***************"
-puts "--#{tr1.where[:prev_station].station_name}--" if tr1.where[:prev_station]!=nil
-puts "--#{tr1.where[:current_station].station_name}--" if tr1.where[:current_station]!=nil
-puts "--#{ tr1.where[:next_station].station_name}--" if tr1.where[:next_station]!=nil
-puts tr1.where[:current_station]==nil
-puts tr1.current_station
-puts tr1.where
-puts "++++++++++++++++++++++++++++"
-st1.show_by_type('cargo').each { |tr| puts tr.total_vagons}
 
-st1.add_train(tr20)
-puts st1.all_trains
+#сортировка по типу груза
+#st1.show_by_type('cargo').each { |tr| puts tr.total_vagons}
+
+tr1.move(tr1.next_station)
+tr1.move(tr1.next_station)
+tr1.move(tr1.next_station)
+tr1.move(tr1.next_station)
+tr1.move(tr1.next_station)
+
+puts tr1.prev_station.station_name if tr1.prev_station!=nil
+puts tr1.current_station.station_name
+puts tr1.next_station.station_name if tr1.next_station!=nil
+
+puts 'dfsdaaaaafffffffffffffffffff'
+
+st1.add_train(route1)
+st1.add_train(route1)
+st1.add_train(route1)
+
+st1.all_trains.each { |train| puts train.train_num}
+puts '*** *** *** **** '
+st1.send_train
+st1.all_trains.each { |train| puts train.train_num}
+puts '** ** ** ** '
+st2.all_trains.each { |train| puts train.train_num}
+st5.send_train
+
+
 
