@@ -6,13 +6,12 @@ class Station
     @all_trains = []
   end
 
-  def add_train(route)
-    train = Train.new
-   train.sent_train(route)
+  def add_train(train)
+    @all_trains<<train
   end
 
-  def send_train
-    all_trains[0].move(all_trains[0].next_station)
+  def send_train(train)
+    train.move(train.next_station)
   end
 
   def show_by_type(type)

@@ -59,6 +59,16 @@ class Train
     @current_station.all_trains.push(self)
   end
 
+  def move_back
+    move(prev_station)
+  end
+
+  def move_forvard
+    move(next_station)
+  end
+
+
+
 
   #+Имеет номер (произвольная строка) и тип (грузовой, пассажирский)
   # +и количество вагонов, эти данные указываются при создании экземпляра класса
