@@ -54,16 +54,15 @@ st1.add_train(tr6)
 st1.add_train(tr7)
 tr6.sent_train(route1)
 tr7.sent_train(route1)
-st1.send_train(tr6)
+st1.delete_train(tr6)
 
-
-st1.all_trains.each { |train| puts train.train_num}
+st1.all_trains.each { |train| puts train.train_num }
 puts '*** *** *** **** '
 puts st1.all_trains
 
-st1.all_trains.each { |train| puts train.train_num}
+st1.all_trains.each { |train| puts train.train_num }
 puts '** ** ** ** '
-st2.all_trains.each { |train| puts train.train_num}
+st2.all_trains.each { |train| puts train.train_num }
 
 
 

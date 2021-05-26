@@ -10,8 +10,8 @@ class Station
     @all_trains<<train
   end
 
-  def send_train(train)
-    train.move(train.next_station)
+  def delete_train(train)
+    @all_trains.delete(train)
   end
 
   def show_by_type(type)
